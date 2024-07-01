@@ -1,0 +1,92 @@
+public class Account {
+    private String accountNumber;
+    private double availableFunds;
+    private String accountOwnerName;
+    private String email;
+    private String phoneNumber;
+
+    public Account(String accountNumber, double availableFunds, String accountOwnerName, String email, String phoneNumber) {
+        this.accountNumber = accountNumber;
+        this.availableFunds = availableFunds;
+        this.accountOwnerName = accountOwnerName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    // Getters and Setters
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public double getAvailableFunds() {
+        return availableFunds;
+    }
+
+    public void setAvailableFunds(double availableFunds) {
+        this.availableFunds = availableFunds;
+    }
+
+    public String getAccountOwnerName() {
+        return accountOwnerName;
+    }
+
+    public void setAccountOwnerName(String accountOwnerName) {
+        this.accountOwnerName = accountOwnerName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    // Methods to credit and withdraw money
+    public void credit(double amount) {
+        this.availableFunds += amount;
+        System.out.println("Deposit of PLN " + amount + " was made. New balance PLN " + this.availableFunds);
+    }
+
+    public void withdraw(double amount) {
+        if (amount > this.availableFunds) {
+            System.out.println("Insufficient funds. You have PLN " + this.availableFunds + " in your account.");
+        } else {
+            this.availableFunds -= amount;
+            System.out.println("Withdrew PLN " + amount + " from the account, Remaining balance = PLN " + this.availableFunds);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "accountNumber='" + accountNumber + '\'' +
+                ", availableFunds=" + availableFunds +
+                ", accountOwnerName='" + accountOwnerName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
+
+    public static void main(String[] args) {
+        Account account = new Account("1234567890", 1000.0, "John Doe", "john.doe@example.com", "123-456-7890");
+        System.out.println(account);
+
+        account.withdraw(900.0);
+        account.credit(250.0);
+        account.withdraw(50.0);
+        account.withdraw(400.0);
+    }
+}
